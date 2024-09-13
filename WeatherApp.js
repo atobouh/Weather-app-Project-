@@ -358,7 +358,6 @@ document.addEventListener('touchend', function(event) {
   }
 });
 // ... (your existing JavaScript) ...
-
 // Team member data
 const teamMembers = [
   {
