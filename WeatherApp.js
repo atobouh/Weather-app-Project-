@@ -17,6 +17,115 @@ recognition.lang = 'en-US';
 recognition.interimResults = false;
 
 // Logo transition
+logo.classList.add('loaded');
+
+async function getCoordinates(city) {
+  const response = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`);
+  const data = await response.json();
+
+  if (!data.results || data.results.length === 0) {
+    throw new Error('Location not found');
+  }
+
+  const { latitude, longitude } = data.results[0];
+  return { latitude, longitude };
+}
+
+async function getWeather(latitude, longitude) {
+  const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weathercode,windspeed_10m&timezone=auto`);
+  const data = await response.json();
+  return data;
+}
+
+function resetAnimationState() {
+  container.classList.remove('active');
+  weatherBox.classList.remove('active');
+  weatherDetails.classList.remove('active');
+  error404.classList.remove('active');
+
+  void container.offsetWidth;
+}
+
+// Swipe detection
+let startX = 0;
+let endX = 0;
+
+const activityBox = document.querySelector('.activity-box');
+const activityText = document.querySelector('.activity-text');
+
+// Add swipe event listeners to detect left swipe
+document.addEventListener('touchstart', function(event) {
+  startX = event.touches[0].clientX;
+});
+
+document.addEventListener('touchend', function(event) {
+  endX = event.changedTouches[0].clientX;
+  if (startX - endX > 50) { // Left swipe detected
+    displayActivityBox();
+  }
+});
+
+// Function to display the activity box based on weather
+function displayActivityBox() {
+  // First, hide the weather box by sliding it to the left
+  weatherBox.classList.add('swipe-out');
+  weatherDetails.classList.add('swipe-out');
+
+  // After the weather box is hidden, display the activity box
+  setTimeout(() => {
+    activityBox.classList.add('active');
+    activityButtons.classList.add('active');
+
+    const description = weatherBox.querySelector('.description'); // Correctly define description
+    const weatherDescription = description.textContent.toLowerCase();
+    let activityMessage = '';
+
+    switch (weatherDescription) {
+      case 'clear sky':
+        activityMessage = "Clear sky today! Go for a walk, have a picnic, or enjoy outdoor sports." +
+          " Men: light shorts and t-shirt. Women: sundress or casual attire." +
+          " Watch 'The Secret Life of Walter Mitty', enjoy a fresh salad, and read 'The Alchemist' by Paulo Coelho.";
+        break;
+      case 'partly cloudy':
+        activityMessage = "Partly cloudy today! Take a scenic drive, visit a park, or enjoy a coffee at an outdoor café." +
+          " Men: jeans and light jacket. Women: sweater and leggings. " +
+          "Watch 'Amélie', enjoy warm soup, and read 'The Night Circus' by Erin Morgenstern.";
+        break;
+      case 'rain':
+        activityMessage = "Rainy day! Watch a movie, visit an indoor attraction, or enjoy a warm drink at a café." +
+          " Men: waterproof jacket and boots. Women: raincoat and waterproof shoes. " +
+          "Watch 'The Grand Budapest Hotel', enjoy warm soup, and read 'The Book Thief' by Markus Zusak.";
+        ;
+        break;
+      case 'snow':
+        activityMessage = "Snowy day! Build a snowman, go sledding, or enjoy hot chocolate by the fireplace." +
+          " Men: warm coat, gloves, and boots. Women: winter jacket, scarf, and insulated boots." +
+          " Watch 'Frozen', enjoy a hearty stew, and read 'The Snow Child' by Eowyn Ivey.";
+        ;
+        break;
+      case 'cloudy':
+        activityMessage = "Cloudy day! Visit a gallery, go shopping, or relax at home." +
+          " Men: sweater and jeans. Women: cardigan and leggings. " +
+          "Watch 'The Pursuit of Happyness', enjoy warm chili, " +
+          "and read 'The Great Gatsby' by F. Scott Fitzgerald.";
+        ;
+        break;
+      default:
+        activityMessage = 'Enjoy your day!';
+    }
+
+    // Apply typing animation by setting text dynamically
+    typeText(activityText, activityMessage);
+  }, 600); //Delay to wait for weather box to slide out
+}
+
+let maleOutfitClickCount = 0;
+let femaleOutfitClickCount = 0;
+let moviesClickCount = 0;
+let foodClickCount = 0;
+let booksClickCount = 0;
+let moreClickCount = 0;
+let currentWeather = '';
 
 // Function to open a URL in a new tab
 function openWebsite(url) {
