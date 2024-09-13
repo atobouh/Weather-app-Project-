@@ -332,6 +332,7 @@ searchButton.addEventListener('click', () => {
   }
 });
 
+
 // Function to handle speech recognition
 function handleSpeech() {
   recognition.start();
