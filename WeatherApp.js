@@ -197,10 +197,10 @@ document.querySelectorAll('.activity-btn').forEach(button => {
         break;
       case 'books':
         booksClickCount++;
-        if (bookClickCount === 1) {
+        if (booksClickCount === 1) {
           message = "These books are perfect for reading in the current weather conditions...";
-        } else if (bookClickCount === 2) {
-          bookClickCount = 0;
+        } else if (booksClickCount === 2) {
+          booksClickCount = 0;
           openWebsite('https://manybooks.net/');
           return;
         }
