@@ -1,4 +1,4 @@
-// Existing DOM element selections
+// DOM element selections
 const container = document.querySelector('.container');
 const searchBox = document.querySelector('.search-box');
 const searchButton = document.querySelector('.search-box button');
