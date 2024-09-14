@@ -494,3 +494,105 @@ body {
     }
 }
 
+.activity-buttons {
+    top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: -50px;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.activity-buttons.active {
+    opacity: 1;
+}
+
+.activity-btn {
+    top: 80px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    width: calc(33.33% - 10px);
+    margin: 5px;
+}
+
+.activity-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Adjust the container height to accommodate the new buttons */
+.container.active {
+    height: 650px;
+    /* Increase this value to fit the new buttons */
+}
+
+/* ... (your existing CSS) ... */
+
+/* About button styles */
+.about-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+    position: fixed;
+    /* Position it at the top left */
+    top: 20px;
+    /* Adjust vertical position as needed */
+    left: 20px;
+    /* Adjust horizontal position as needed */
+    z-index: 1000;
+    /* Ensure it's on top of other elements */
+}
+
+.about-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* About tab styles */
+.about-tab {
+    position: fixed;
+    /* Make the About tab fixed */
+    top: 70px;
+    /* Position the About tab below the logo */
+    left: 20px;
+    width: 360px;
+    /* Adjust width as needed */
+    background-color: gray;
+    backdrop-filter: blur (20px);
+    border-radius: 10px;
+    padding: 20px;
+    color: #000;
+    /* Black text color */
+    text-align: center;
+    z-index: 1000;
+    /* Ensure it's on top of other elements */
+    display: none;
+    /* Initially hidden */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    max-height: 400px;
+    /* Set a maximum height for the tab */
+}
+
+
+.team-member {
+    margin-bottom: 15px;
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+        }
+                           
