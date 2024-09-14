@@ -371,3 +371,126 @@ body {
 .city-hide {
   display: none;
 }
+
+#clone-info-weather,
+/*33:25*/
+#clone-info-humidity,
+#clone-info-wind {
+    position: absolute;
+    transform: translateY(-100%);
+
+}
+
+#clone-info-weather .weather {
+    transform: translateY(120%);
+    transition: transform 1s ease, opacity 0s;
+    transition-delay: 0s, 2s;
+}
+
+.weather-box:not(.active) #clone-info-weather .weather {
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.active-clone#clone-info-weather .weather {
+    transform: translateY(0%);
+}
+
+#clone-info-humidity span,
+#clone-info-wind span {
+    transform: translateY(100%);
+    transition: transform 1s ease;
+}
+
+.active-clone#clone-info-humidity span,
+.active-clone#clone-info-wind span {
+    transform: translateY(0%);
+}
+
+/* Hide weather-box when swiped left */
+.weather-box.swipe-out {
+    transform: translateX(-250%);
+    /* Slide the weather box out to the left */
+    transition: transform 0.6s ease;
+}
+
+/* Add this to your existing CSS */
+.weather-details.swipe-out {
+    transform: translateX(-250%);
+    transition: transform 0.6s ease;
+}
+
+/* Add new styles for activity box */
+.activity-box {
+    position: absolute;
+    left: -250%;
+    /* Start off-screen */
+    top: 150px;
+    width: 397px;
+    height: auto;
+    max-height: 600px;
+    background: rgba(0, 0, 0, 0.5);
+    /* Transparent background */
+    border-radius: 16px;
+    padding: 20px;
+    color: #fff;
+    z-index: 1;
+    transition: left 0.6s ease;
+    display: flex;
+    /* Hidden by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* Hide overflow if text is too long */
+    text-align: left;
+    /* Align text to the left */
+    white-space: normal;
+    /* Allow the text to wrap onto the next line */
+    line-height: 1.5em;
+    /* Add line spacing for readability */
+}
+
+.activity-box.active {
+    left: 0;
+    /* Slide into view */
+    /* display: block;*/
+}
+
+/* Typing animation effect */
+.typing-animation {
+    font-size: 18px;
+    white-space: normal;
+    overflow: hidden;
+    max-width: 100%;
+    /* Ensure text fills the available space */
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    text-align: left;
+    /* Align text to the left */
+    line-height: 1.5em;
+    /* Proper line spacing */
+}
+
+/* Typing animation effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-right-color: transparent;
+    }
+
+    50% {
+        border-right-color: white;
+    }
+}
+
