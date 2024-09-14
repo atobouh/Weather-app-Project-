@@ -127,9 +127,100 @@ let booksClickCount = 0;
 let moreClickCount = 0;
 let currentWeather = '';
 
+// Function to open a URL in a new tab
+function openWebsite(url) {
+  window.open(url, '_blank');
+}
 
+// Add event listeners for the activity buttons
+document.querySelectorAll('.activity-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    const activity = button.dataset.activity;
+    let message = '';
 
+    switch (activity) {
+      case 'male-outfits':
+        maleOutfitClickCount++;
+        if (maleOutfitClickCount === 1) {
+          message = "Here are some outfit suggestions for men based on the current weather...";
+        } else if (maleOutfitClickCount === 2) {
+          maleOutfitClickCount = 0; // Reset click count
+          switch (currentWeather) {
+            case 'Rain':
+              openWebsite('https://www.bing.com/images/search?view=detailV2&ccid=WdLzyQIP&id=9C8A48774AA1A415AA37832C15045BCB715EF486&thid=OIP.WdLzyQIPdHaA39VRoaxLJgHaJQ&mediaurl=https%3A%2F%2Fnextluxury.com%2Fwp-content%2Fuploads%2Fnextluxfashion-20200601-ellisanthony-20200303-bsnekk-768x960.jpg&cdnurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.59d2f3c9020f747680dfd551a1ac4b26%3Frik%3DhvRecctbBBUsgw%26pid%3DImgRaw%26r%3D0&exph=960&expw=768&q=how+to+dress+in+a+rainy+weather+black+men&simid=607989785965042478&form=IRPRST&ck=DF37CC6F15BBE2547D8D511ED2667475&selectedindex=0&itb=0&ajaxhist=0&ajaxserp=0&vt=0&pivotparams=insightsToken%3Dccid_4hrlCxL7*cp_053C06BB9474B088E748A59B1DE08812*mid_9C8A48774AA1A415AA37BCB9C1D51E3E71BCAA02*simid_608025258114364138*thid_OIP.4hrlCxL7Nkf306vU6d61sAHaJQ&sim=11&iss=VSI&ajaxhist=0&ajaxserp=0');
+              return;
+            case 'Snow':
+              openWebsite('https://www.bing.com/images/search?view=detailv2&form=SBIHVR&iss=sbi&q=imgurl:https%3A%2F%2Fi.pinimg.com%2F474x%2F87%2F9f%2F14%2F879f1474423e80190b032149bddf7909.jpg&pageurl=https%3A%2F%2Fwww.pinterest.com%2Fsearch%2Fpins%2F%3Fq%3Dwinter%2520black%2520man%2520outfit%2520cold%2520weather%26rs%3Dtyped&pagetl=Pinterest&imgalt=This+contains+an+image+of%3A+3+Casual+Fashion+Men%E2%80%99s+Winter+Jacket+looks+you+will+love.%F0%9F%98%89&imgsz=236x419&selectedindex=0&id=https%3A%2F%2Fi.pinimg.com%2F474x%2F87%2F9f%2F14%2F879f1474423e80190b032149bddf7909.jpg&ccid=bNs8Ffyc&mediaurl=https%3A%2F%2Fi.pinimg.com%2F474x%2F87%2F9f%2F14%2F879f1474423e80190b032149bddf7909.jpg&exph=842&expw=474&vt=2&sim=11');
+              return;
+            default:
+              openWebsite('https://www.bing.com/images/search?view=detailv2&form=SBIHVR&iss=sbi&q=imgurl:https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fdb%2F5d%2F32%2Fdb5d320b3b01cd133c3102281fff2508.jpg&pageurl=https%3A%2F%2Fwww.pinterest.com%2Fsearch%2Fpins%2F%3Fq%3DCasual%2520outfits%2520for%2520black%2520men%26rs%3Dsrs%26b_id%3DBF_VAn2vW3IYAAAAAAAAAABkomDv726DOh67pF1LmEyQneXHk7aLwdVFIpCVrZBIMpW3ENwK9galaLYurn6J1SewqK0QRiyUig%26source_id%3DTHrAjPGJ&pagetl=Pinterest&imgalt=This+contains+an+image+of%3A+&imgsz=236x292&selectedindex=0&id=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fdb%2F5d%2F32%2Fdb5d320b3b01cd133c3102281fff2508.jpg&ccid=In1h7cYt&mediaurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fdb%2F5d%2F32%2Fdb5d320b3b01cd133c3102281fff2508.jpg&exph=1588&expw=1284&vt=2&sim=1');
+              return;
+          }
+        }
+        break;
+      case 'female-outfits':
+        femaleOutfitClickCount++;
+        if (femaleOutfitClickCount === 1) {
+          message = "Here are some outfit suggestions for women based on the current weather...";
+        } else if (femaleOutfitClickCount === 2) {
+          femaleOutfitClickCount = 0; // Reset click count
+          switch (currentWeather) {
+            case 'Rain':
+            case 'Snow':
+              openWebsite('https://www.bing.com/images/search?view=detailv2&form=SBIHVR&iss=sbi&q=imgurl:https%3A%2F%2Fi.pinimg.com%2F474x%2F1e%2F11%2F76%2F1e1176fbbd041dfd8ad37606a372cba5.jpg&pageurl=https%3A%2F%2Fwww.pinterest.com%2Fsearch%2Fpins%2F%3Fq%3Dwinter%2520blackwomen%2520outfit%2520cold%2520weather%26rs%3Dtyped&pagetl=Pinterest&imgalt=This+contains+an+image+of%3A+Cute&imgsz=236x419&selectedindex=0&id=https%3A%2F%2Fi.pinimg.com%2F474x%2F1e%2F11%2F76%2F1e1176fbbd041dfd8ad37606a372cba5.jpg&ccid=pAHJ1%2FlH&mediaurl=https%3A%2F%2Fi.pinimg.com%2F474x%2F1e%2F11%2F76%2F1e1176fbbd041dfd8ad37606a372cba5.jpg&exph=842&expw=474&vt=2&sim=1');
+              return;
+            default:
+              openWebsite('https://www.bing.com/images/search?view=detailv2&form=SBIHVR&iss=sbi&q=imgurl:https%3A%2F%2Fi.pinimg.com%2Foriginals%2F9b%2F0b%2Fff%2F9b0bffd8a75a497772ce8d8c60622397.jpg&pageurl=https%3A%2F%2Fwww.pinterest.com%2Fsearch%2Fpins%2F%3Fq%3Dspring%2520outfits%2520black%2520women%26rs%3Dtyped&pagetl=Pinterest&imgalt=Women+Styles+Club%3A+Business+casual+fall+outfits+for+black+women%3A+Smart+and+classy+looks+for+work&imgsz=236x425&selectedindex=0&id=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F9b%2F0b%2Fff%2F9b0bffd8a75a497772ce8d8c60622397.jpg&ccid=rYnMlp69&mediaurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F9b%2F0b%2Fff%2F9b0bffd8a75a497772ce8d8c60622397.jpg&exph=1016&expw=564&vt=2&sim=1');
+              return;
+          }
+        }
+        break;
+      case 'movies':
+        moviesClickCount++;
+        if (moviesClickCount === 1) {
+          message = "Consider watching these movies that match the mood of the weather...";
+        } else if (moviesClickCount === 2) {
+          moviesClickCount = 0;
+          openWebsite('https://www.primevideo.com/offers/nonprimehomepage/ref=atv_dl_rdr');
+          return;
+        }
+        break;
+      case 'food':
+        foodClickCount++;
+        if (foodClickCount === 1) {
+          message = "Here are some food recommendations that go well with this weather...";
+        } else if (foodClickCount === 2) {
+          foodClickCount = 0;
+          openWebsite('https://www.tripadvisor.com/Restaurants-g293773-zfp19-Yaounde_Centre_Region.html');
+          return;
+        }
+        break;
+      case 'books':
+        booksClickCount++;
+        if (booksClickCount === 1) {
+          message = "These books are perfect for reading in the current weather conditions...";
+        } else if (booksClickCount === 2) {
+          booksClickCount = 0;
+          openWebsite('https://manybooks.net/');
+          return;
+        }
+        break;
+      case 'more':
+        moreClickCount++;
+        if (moreClickCount === 1) {
+          message = "Here are additional activities you might enjoy in this weather...";
+        } else if (moreClickCount === 2) {
+          moreClickCount = 0;
+          openWebsite('https://www.bing.com/chat?q');
+          return;
+        }
+        break;
+    }
 
+    // Update the activity box with the new message
+    typeText(activityText, message);
+  });
+});
 
 
 
@@ -370,8 +461,16 @@ document.addEventListener('touchend', function(event) {
 
 
 
+<<<<<<< HEAD
 
 
+
+
+
+=======
+
+
+>>>>>>> 537073c3f4c066b9275e37f0a821a9703e86d11e
 // Function to add typing animation to the text
 function typeText(element, text) {
     element.textContent = ''; // Clear previous content
