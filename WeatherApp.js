@@ -332,7 +332,30 @@ let currentWeather = '';
 
 
 
+// Function to handle speech recognition
+function handleSpeech() {
+  recognition.start();
+  console.log('Ready to receive a city name.');
+}
 
+// Event listener for speech recognition result
+recognition.onresult = function(event) {
+  let city = event.results[0][0].transcript;
+  city = city.replace(/[.,!?;:]+$/, '').trim();
+  console.log('Recognized city:', city);
+  searchBox.querySelector('input').value = city;
+  searchWeather(city);
+};
+
+// Event listener for double click
+document.addEventListener('dblclick', handleSpeech);
+
+// For mobile devices, use touchend event
+document.addEventListener('touchend', function(event) {
+  if (event.touches.length === 0) {
+    handleSpeech();
+  }
+});
 
 
 
