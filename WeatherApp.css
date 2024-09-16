@@ -7,21 +7,7 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    /*this code below*/
-    height: 100%;
-    width: 100%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: url('images/background.jpg');
-    background-size: cover;
-    background-position: center;
-    overflow: hidden;
-    flex-direction: column;
-}
+
 
 /*this set was added */
 
